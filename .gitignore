@@ -128,7 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+#VS Code
+.vscode/
+
 # Data
+Data/
 *.zip
-/Data/*
-!/Data/RenameFiles.py
