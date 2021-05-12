@@ -6,8 +6,8 @@ target_directories = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 # Function to rename multiple files
 cwd = os.getcwd()
 if not os.path.isdir(f"{cwd}/Data"):
-    print("Extracting data.zip...")
-    with zipfile.ZipFile(f"{cwd}/data.zip", 'r') as zip_ref:
+    print("Extracting Data.zip...")
+    with zipfile.ZipFile(f"{cwd}/Data.zip", 'r') as zip_ref:
         zip_ref.extractall(cwd)
 
 for dir in target_directories:
