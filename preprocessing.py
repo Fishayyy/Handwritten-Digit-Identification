@@ -20,7 +20,10 @@ for dir in target_directories:
         img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
 
         # Apply blur for thresholding
-        blur = cv2.GaussianBlur(img, (5, 5), 0)
+        blur = cv2.GaussianBlur(img, (5, 5), 150)
+
+        # Background Subtraction
+        cv2.subtract(blur,img,img)
 
         # find normalized_histogram, and its cumulative distribution function
         hist = cv2.calcHist([blur], [0], None, [256], [0, 256])
@@ -49,6 +52,10 @@ for dir in target_directories:
 
         # find otsu's threshold value with OpenCV function
         _, img = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+        # Thinning - function says dilation but functions as erosion
+        kernel = np.ones((3, 3), np.uint8)
+        img = cv2.dilate(img, kernel, iterations=1)
 
         # Resize Image
         desired_size = 64
