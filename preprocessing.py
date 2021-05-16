@@ -53,9 +53,12 @@ for dir in target_directories:
         # find otsu's threshold value with OpenCV function
         _, img = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
+
+        img = cv2.bitwise_not(img)
+
         # Thinning - function says dilation but functions as erosion
         kernel = np.ones((3, 3), np.uint8)
-        img = cv2.dilate(img, kernel, iterations=1)
+        img = cv2.erode(img, kernel, iterations=1)
 
         # Resize Image
         desired_size = 64
@@ -71,9 +74,8 @@ for dir in target_directories:
         top, bottom = delta_h // 2, delta_h - (delta_h // 2)
         left, right = delta_w // 2, delta_w - (delta_w // 2)
 
-        color = [255, 255, 255]
+        color = [0, 0, 0]
         img = cv2.copyMakeBorder(img, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)
-
 
 
         # Save image

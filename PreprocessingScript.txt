@@ -1,0 +1,5 @@
+d:
+cd patternrecognition
+python UnpackData.py
+python preprocessing.py
+
