@@ -21,7 +21,7 @@ for dir in target_directories:
     
     #assign new easily indexed names
     for i, filename in enumerate(os.listdir(path)):
-        new = f"{path}\\{dir}_{i}.png"
+        new = f"{path}\\{dir}_{i}.tif"
         old = f"{path}\\{filename}"
         os.rename(old, new)
 
