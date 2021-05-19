@@ -71,21 +71,15 @@ Y_train = to_categorical(Y_train, num_classes = 10)
 
 model = Sequential()
 
-model.add(layers.Conv2D(filters = 32, kernel_size = (5,5),padding = 'Same', 
-                 activation ='relu', input_shape = (28,28,1)))
-model.add(layers.Conv2D(filters = 32, kernel_size = (5,5),padding = 'Same', 
-                 activation ='relu'))
+model.add(layers.Conv2D(filters = 32, kernel_size = (5,5),padding = 'Same', activation ='relu', input_shape = (28,28,1)))
+model.add(layers.Conv2D(filters = 32, kernel_size = (5,5),padding = 'Same', activation ='relu'))
 model.add(layers.MaxPool2D(pool_size=(2,2)))
 model.add(layers.Dropout(0.25))
 
-
-model.add(layers.Conv2D(filters = 64, kernel_size = (3,3),padding = 'Same', 
-                 activation ='relu'))
-model.add(layers.Conv2D(filters = 64, kernel_size = (3,3),padding = 'Same', 
-                 activation ='relu'))
+model.add(layers.Conv2D(filters = 64, kernel_size = (3,3),padding = 'Same', activation ='relu'))
+model.add(layers.Conv2D(filters = 64, kernel_size = (3,3),padding = 'Same', activation ='relu'))
 model.add(layers.MaxPool2D(pool_size=(2,2), strides=(2,2)))
 model.add(layers.Dropout(0.25))
-
 
 model.add(layers.Flatten())
 model.add(layers.Dense(256, activation = "relu"))
@@ -97,11 +91,7 @@ optimizer = RMSprop(lr=0.001, rho=0.9, epsilon=1e-08, decay=0.0)
 model.compile(optimizer=optimizer , loss="categorical_crossentropy", metrics=["accuracy"])
 
 # Set a learning rate annealer
-learning_rate_reduction = ReduceLROnPlateau(monitor='val_acc', 
-                                            patience=3, 
-                                            verbose=1, 
-                                            factor=0.5, 
-                                            min_lr=0.00001)
+learning_rate_reduction = ReduceLROnPlateau(monitor='val_acc', patience=3, verbose=1, factor=0.5, min_lr=0.00001)
 
 epochs = 30 
 batch_size = 8
