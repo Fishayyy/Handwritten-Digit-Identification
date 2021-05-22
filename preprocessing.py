@@ -6,6 +6,7 @@ import warnings
 
 warnings.filterwarnings('ignore')
 primary_directories = ['test','train']
+secondary_directories = ['greyscale','binary']
 target_directories = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
   
 cwd = os.getcwd()
