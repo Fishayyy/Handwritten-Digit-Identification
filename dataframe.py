@@ -44,7 +44,7 @@ for dir in target_directories:
         top, bottom = delta_h//2, delta_h-(delta_h//2)
         left, right = delta_w//2, delta_w-(delta_w//2)
 
-        color = [255, 255, 255]
+        color = [128, 128, 128]
         img = cv2.copyMakeBorder(img, top, bottom, left, right, cv2.BORDER_CONSTANT, value=color)
 
         data = np.matrix(img)

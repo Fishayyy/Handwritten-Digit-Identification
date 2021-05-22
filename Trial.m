@@ -1,12 +1,15 @@
-folder = 'C:\Program Files\DIPimage 2.9\images\grayscale\';
-filepattern = fullfile(folder,'1_*.tif');
+folder = 'D:\PatternRecognition\processed_images\';
+filepattern = fullfile(folder,'4_*.tif');
 files = dir(filepattern);
-ouput_folder = 'C:\Program Files\DIPimage 2.9\images\grayscale\output\';
+ouput_folder = 'D:\PatternRecognition\Data\output\';
 
+
+files = dir('D:\PatternRecognition\Data\test\0\*.tif');
 for i = 1:length(files)
     file = files(i);
     file_name = file.name;
-    A = imread(strcat(folder,file_name));
+    A = imread(strcat(strcat(file.folder,'\'),file_name));
+   % A = im2gray(A);
     B = gaussf(A,120,'best');
     B = B - A;
     [B,thres] = threshold(B,'otsu',Inf);
@@ -19,7 +22,8 @@ for i = 1:length(files)
         end
     end
     D = msr2obj(C,data,'Size',1);
-    [D,thres] = threshold(D,'fixed',max);
+    [D,thres] = threshold(D,'fixed', (3 * max) / 4);
+    %[D,thres] = threshold(D,'fixed',max);
     
 %     D = bskeleton(C,1,'natural');
 %     E = getsinglepixel(D);
