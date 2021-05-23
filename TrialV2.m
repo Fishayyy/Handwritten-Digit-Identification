@@ -10,11 +10,11 @@ for p = 3:length(rootfolder)
     folders = dir(folder_path);
     grey = "";
     for i = 1:length(folders)
-        if(folders(i).name == "greyscale")
+        if(folders(i).name == "grayscale")
             grey = folders(i);
             output_name = strcat(grey.folder,'\');
             output_name = strcat(output_name,grey.name);
-            output_folder = replace(output_name,'greyscale','binary\');
+            output_folder = replace(output_name,'grayscale','binary\');
             if ~exist(output_folder, 'dir')
                 mkdir(output_folder)
             end
@@ -43,7 +43,7 @@ for p = 3:length(rootfolder)
             end
             D = msr2obj(C,data,'Size',1);
             [D,thres] = threshold(D,'fixed', (3 * max) / 4);
-            output_name = replace(file_name,'greyscale','binary');
+            output_name = replace(file_name,'grayscale','binary');
             writeim(D,output_name,'TIFF',0,[])
         end
     end 

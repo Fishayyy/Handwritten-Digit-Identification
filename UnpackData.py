@@ -1,11 +1,12 @@
 import os
 import zipfile
 import cv2
+import shutil
 import warnings
 
 warnings.filterwarnings('ignore')
 primary_directories = ['test', 'train']
-secondary_directories = ['greyscale','binary']
+secondary_directories = ['grayscale','binary']
 target_directories = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 cwd = os.getcwd()
@@ -55,10 +56,11 @@ def initial_preprocessing():
                 # Save image
                 cv2.imwrite(os.path.join(save_path, filename), img)
 
-
-
-
-
 unpack_data("train")
 unpack_data("test")
 initial_preprocessing()
+
+try:
+    shutil.rmtree("Data/")
+except OSError as e:
+    print("Error: %s : %s" % ("Data/", e.strerror))
