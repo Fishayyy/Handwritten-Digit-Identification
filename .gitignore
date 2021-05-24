@@ -133,5 +133,3 @@ dmypy.json
 
 # Data
 processed_images/
-Data/
-*.zip
