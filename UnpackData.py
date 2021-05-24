@@ -24,33 +24,33 @@ def unpack_data(train_test):
 
         #clear previous names
         for i, filename in enumerate(os.listdir(path)):
-            new = f"{path}\\{i}.png"
-            old = f"{path}\\{filename}"
+            new = f"{path}/{i}.png"
+            old = f"{path}/{filename}"
             os.rename(old, new)
         
         #assign new easily indexed names
         for i, filename in enumerate(os.listdir(path)):
-            new = f"{path}\\{dir}_{i}_{train_test}.tif"
-            old = f"{path}\\{filename}"
+            new = f"{path}/{dir}_{i}_{train_test}.tif"
+            old = f"{path}/{filename}"
             os.rename(old, new)
 
 def initial_preprocessing():
-    save_path = f'{cwd}\\processed_images\\'
+    save_path = f'{cwd}/processed_images/'
     if not os.path.isdir(save_path):
         os.mkdir(save_path)
     for dir1 in primary_directories:
         for dir2 in target_directories:
             path = os.path.realpath(f'Data/{dir1}/{dir2}/')
-            save_path = f'{cwd}\\processed_images\\{dir1}\\'
+            save_path = f'{cwd}/processed_images/{dir1}/'
             if not os.path.isdir(save_path):
                 os.mkdir(save_path)
 
-            save_path = f'{cwd}\\processed_images\\{dir1}\\{secondary_directories[0]}\\'
+            save_path = f'{cwd}/processed_images/{dir1}/{secondary_directories[0]}/'
             if not os.path.isdir(save_path):
                 os.mkdir(save_path)
             for filename in os.listdir(path):
                 # Read in Image
-                filepath = f"{path}\\{filename}"
+                filepath = f"{path}/{filename}"
                 img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
 
                 # Save image
